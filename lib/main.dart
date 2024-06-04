@@ -12,10 +12,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LexEd.AI',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark(
       ),
       home: const SplashScreen(),
+       debugShowCheckedModeBanner: false,
     );
   }
 }
