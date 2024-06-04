@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'result.dart'; // Import the result.dart file
+import 'package:lexed_ai_app/screens/result.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -38,6 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            InkWell(
+              onTap: () => _launchURL('https://www.google.com'),
+              child: Text(
+                'Go to the website',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -53,5 +65,13 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) => ResultScreen(searchQuery: searchQuery),
       ),
     );
+  }
+
+  Future<void> _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
