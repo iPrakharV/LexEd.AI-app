@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'result.dart'; // Import the result.dart file
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,7 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _performSearch() {
     final searchQuery = _searchController.text;
-    // Perform search logic with searchQuery
-    print('Searching for: $searchQuery');
+    // Navigate to the ResultScreen and pass the searchQuery
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(searchQuery: searchQuery),
+      ),
+    );
   }
 }
